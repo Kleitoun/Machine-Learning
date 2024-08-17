@@ -1,5 +1,7 @@
 # code taken by HuggingFace's implementation - https://huggingface.co/blog/annotated-diffusion
 
+## INCOMPLETE ##
+
 import math
 from inspect 
 from functools import partial 
