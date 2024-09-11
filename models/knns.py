@@ -4,6 +4,7 @@ class KNN:
     self.distance_metric = distance_metric
     
   def(self, seq):
+  # http://stackoverflow.com/questions/3071415/efficient-method-to-calculate-the-rank-vector-of-a-list-in-python
     return sorted(range(len(seq)), key=seq.__getitem__)
     
   def euclidean_distance(self, x1, x2):
