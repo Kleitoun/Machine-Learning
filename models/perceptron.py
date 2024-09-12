@@ -1,7 +1,7 @@
 import torch
 
 class Perceptron:
-	def __init__(self, K=1000, D=None, bias=1):
+	def __init__(self, eta=0.01, K=1000, D=None, bias=1, random_state=42):
 		if D is None:
 			raise ValueError('D must be provided')
 
@@ -10,7 +10,6 @@ class Perceptron:
 		self.y = torch.tensor(D[:,-1], dtype=torch.float32)
 		self.n = X.shape[0]
 		self.d = X.shape[1]
-
 
 		self.weights = torch.rand(d+1, dtype=torch.float32)
 
