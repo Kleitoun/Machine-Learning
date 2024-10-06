@@ -41,6 +41,30 @@ cross_attn = torch.nn.functional.softmax(cross_interaction, dim=0)
 cross_out = cross_attn.matmul(values_2)
 
 
+#multihead attention 
+h = 4
+
+multihead_W_q = torch.nn.Parameters(torch.rand(h, d_q, d))
+multihead_W_k = torch.nn.Parameters(torch.rand(h, d_k, d))
+multihead_W_v = torch.nn.Parameters(torch.rand(h, d_v, d))
+
+repeated_seq = embedded_sentence.T.repeat(h, 1, 1)
+
+multihead_queries = torch.bmm(multihead_W_q, repeated_seq)
+multihead_keys = torch.bmm(multihead_W_k, repeated_seq).permute(0,2,1)
+multihead_values = torch.bmm(multihead_W_v, repeated_seq).permute(0,2,1)
+
+interaction = (multihead_queries @ multihead_keys.T) / d_k**0.5
+
+attn = torch.nn.softmax(interaction, dim=0)
+out = torch.bmm(attn, multihead_values)
+
+
+
+
+
+
+
 
 
 
